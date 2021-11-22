@@ -127,9 +127,9 @@ export async function getStaticProps() {
   let campaign;
   let error='';
   try {
-    campaign = await factory.methods.getDeployCampaign().call();
+    campaign = JSON.stringify(await factory.methods.getDeployCampaign().call());
   } catch (err) {
-    error = err;
+    error = JSON.stringify(err);
   }
 
   return {
