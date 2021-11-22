@@ -137,7 +137,7 @@ export default function Home({ campaign,error }) {
 }
 
 export async function getStaticProps() {
-  let campaign;
+  let campaign=null;
   let error='';
   try {
     campaign = JSON.stringify(await factory.methods.getDeployCampaign().call());
