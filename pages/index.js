@@ -69,10 +69,13 @@ import {
   SkeletonText,
   ModalHeader,
 } from "@chakra-ui/react";
+import web3 from "../ethereum/web3";
 
-export default function Home({ campaign,error }) {
+export default function Home({ campaign,error,adress }) {
+
+
   useEffect(() => {
-    // console.log(campaign);
+
     // console.log(error)
   }, []);
 
@@ -122,12 +125,20 @@ export default function Home({ campaign,error }) {
       </Flex>
 
       <Flex width="100%" mt={10}   justifyContent="center" flexDirection="column">
-      <Grid templateColumns=  {{ base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} gap={6}>
-  <Box w="100%" h="260" bg="blue.500" />
-  <Box w="100%" h="260" bg="blue.500" />
-  <Box w="100%" h="260" bg="blue.500" />
-  <Box w="100%" h="260" bg="blue.500" />
-  <Box w="100%" h="260" bg="blue.500" />
+      <Grid templateColumns=  {{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}} gap={6}>
+
+      {campaign.map((item, i) => 
+       <Flex w="100%" h="260" key={i} flexDirection="column"  justifyContent="center" alignItems="start" boxShadow="md" p={5} >
+
+       <Text fontWeight="bolder">Addresss:</Text>
+       <Text>{item}</Text>
+   
+       </Flex>
+      
+      
+      )}
+ 
+  
 </Grid>
 
         </Flex>
@@ -140,8 +151,11 @@ export default function Home({ campaign,error }) {
 export async function getStaticProps() {
   let campaign=null;
   let error='';
+
   try {
-    campaign = JSON.stringify(await factory.methods.getDeployCampaign().call());
+    campaign = await factory.methods.getDeployCampaign().call();
+    console.log( web3.eth)
+   //adress =   web3
   } catch (err) {
     error = JSON.stringify(err);
   }
@@ -149,7 +163,8 @@ export async function getStaticProps() {
   return {
     props: {
       campaign,
-      error
+      error,
+      adress
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
