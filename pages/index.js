@@ -149,7 +149,7 @@ export default function Home({ campaign,error,adress }) {
 }
 
 export async function getStaticProps() {
-  let campaign=null;
+  let campaign=[];
   let error='';
 
   try {
