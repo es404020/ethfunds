@@ -36,9 +36,23 @@ import {
 import { useRouter } from 'next/router';
 
 
+import { useWeb3React } from "@web3-react/core"
+import { injected } from "../component/connects"
+
 
 
 export default function Mainlayout({ children }) {
+
+  const { active, account, library, connector, activate, deactivate } = useWeb3React()
+
+  async function connect() {
+    console.log('hehe')
+    try {
+      await activate(injected)
+    } catch (ex) {
+      console.log(ex)
+    }
+  }
 
 
   const [colorChange, setColorchange] = useState(false);
@@ -107,7 +121,7 @@ export default function Mainlayout({ children }) {
 
 
           <Button
-
+onClick={connect}
            
            borderColor=" #02d395 "
 
