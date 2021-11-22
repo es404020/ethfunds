@@ -107,7 +107,7 @@ export default function Home({ campaign,error }) {
 
     </Flex>
 
-    <Flex  flexDirection="column" height="100vh" alignItems="center" justifyContent="center"   width="100%"  p=  {{ base: 5, md: 20 }}>
+    <Flex  flexDirection="column"  alignItems="center" justifyContent="center"   width="100%"  p=  {{ base: 5, md: 20 }}>
 
       <Flex flexDirection="column" width=  {{ base: '100%', md: "100%" }} p={5}>
 
