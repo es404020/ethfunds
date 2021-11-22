@@ -34,6 +34,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { useRouter } from 'next/router';
+import web3 from "../ethereum/web3";
 
 
 import { useWeb3React } from "@web3-react/core"
@@ -119,20 +120,23 @@ export default function Mainlayout({ children }) {
 
             </Flex>
 
-
-          <Button
-onClick={connect}
-           
-           borderColor=" #02d395 "
-
-            color="#02d395"
-            type="submit"
-            // disabled={isSubmitting}
-            variant="outline"
-        
-          >
-            connect
-          </Button>
+{
+  !web3.currentProvider.selectedAddress ?  <Button
+  onClick={connect}
+             
+             borderColor=" #02d395 "
+  
+              color="#02d395"
+              type="submit"
+              // disabled={isSubmitting}
+              variant="outline"
+          
+            >
+              connect
+            </Button>:
+            <Text color="white" isTruncated>{web3.currentProvider.selectedAddress.toString().slice(0,10)}***{web3.currentProvider.selectedAddress.toString().slice(19,28)}</Text>
+}
+         
 
         </Flex>
 
