@@ -163,8 +163,7 @@ export async function getStaticProps() {
   return {
     props: {
       campaign,
-      error,
-      adress
+      error
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
