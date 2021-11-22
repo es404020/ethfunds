@@ -107,16 +107,29 @@ export default function Home({ campaign,error }) {
 
     </Flex>
 
-    <Flex  flexDirection="column" height="50vh" justifyContent="center"   width="100%">
+    <Flex  flexDirection="column" height="100vh" alignItems="center" justifyContent="center"   width="100%"  p=  {{ base: 5, md: 20 }}>
 
-      <Flex flexDirection="column" width=  {{ base: '100%', md: "40%" }} p={5}>
+      <Flex flexDirection="column" width=  {{ base: '100%', md: "100%" }} p={5}>
 
         <Text  fontSize= {{ base: 'md', md: "3xl" }} color="#9e9e9e" >Try Compound</Text>
 
         <Text fontWeight="bold" fontSize= {{ base: 'md', md: "3xl" }} >Community-built creators, whose main purpose is to change the world.</Text>
 
+
+     
+
       </Flex>
 
+      <Flex width="100%" mt={10}   justifyContent="center" flexDirection="column">
+      <Grid templateColumns=  {{ base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} gap={6}>
+  <Box w="100%" h="260" bg="blue.500" />
+  <Box w="100%" h="260" bg="blue.500" />
+  <Box w="100%" h="260" bg="blue.500" />
+  <Box w="100%" h="260" bg="blue.500" />
+  <Box w="100%" h="260" bg="blue.500" />
+</Grid>
+
+        </Flex>
 </Flex>
 
     </Box>

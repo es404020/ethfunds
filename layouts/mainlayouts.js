@@ -83,7 +83,9 @@ export default function Mainlayout({ children }) {
                         },
                     }}>
 
-        <Flex justifyContent="space-between" alignItems="center" position="fixed" 
+        <Flex justifyContent="space-between" alignItems="center" position="fixed"
+       
+        backdropFilter={colorChange ? 'blur( 10.5px )' : null}
 
         border={colorChange ? '1px solid rgba( 255, 255, 255, 0.18 )' : null}
         
