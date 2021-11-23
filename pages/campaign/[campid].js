@@ -44,7 +44,7 @@ export default function CampDetails() {
 
         <>
 <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }} gap={2}>
-  <Flex w="100%"flexDirection="column" justifyContent="space-between" p={10} fontWeight="semibold" fontSize="large" >
+  <Flex boxSizing="border-box" w="100%"flexDirection="column" justifyContent="space-between" p={10} fontWeight="semibold" fontSize="large" >
 
   <Text
   bgGradient="linear(to-l, #000000,#02d395)"
@@ -55,7 +55,7 @@ export default function CampDetails() {
  {state}
 </Text>
      
-      <Text >You can find all the information about this project </Text> 
+      <Text fontSize={{ base: "sm" ,md:"2xl" }} mb={{ base: 5 ,md:null }}>You can find all the information about this project </Text> 
 
       <Grid templateColumns="repeat(2, 1fr)" width="90%" gap={6}>
   <Flex p={10} w="100%" h="30vh" justifyContent="center" bg="#FDECD4" flexDirection="column" borderRadius="md" boxShadow="md">
