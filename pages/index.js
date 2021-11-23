@@ -1,7 +1,7 @@
 import factory from "../ethereum/factory";
 import { useEffect,useState } from "react";
 import Mainlayout from '../layouts/mainlayouts';
-
+import { useRouter } from 'next/router'
 
 import {
   Grid,
@@ -73,10 +73,12 @@ import web3 from "../ethereum/web3";
 
 export default function Home({ campaign,error,adress }) {
 
-
+  const router = useRouter()
   useEffect(() => {
 
-    // console.log(error)
+  // const who =   await factory.methods;
+
+    console.log(campaign)
   }, []);
 
 
@@ -124,16 +126,25 @@ export default function Home({ campaign,error,adress }) {
 
       </Flex>
 
-      <Flex width="100%" mt={10}   justifyContent="center" flexDirection="column">
+      <Flex width= {{ base: '100%', md: "90%" }} mt={10}   justifyContent="center" flexDirection="column">
       <Grid templateColumns=  {{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}} gap={6}>
 
       {campaign.map((item, i) => 
-       <Flex w="100%" h="260" key={i} flexDirection="column"  justifyContent="center" alignItems="start" boxShadow="md" p={5} >
+       <Flex cursor="pointer" _hover={{
+        transform: "scale(1.1)",
+        fontWeight:"bold"
+      }}   transition="transform .2s"  onClick={() => router.push(`/campaign/${item}`)} w= {{ base: "70%", md:"100%"}} h="260" key={i} flexDirection="column"   justifyContent="center" alignItems="start" boxShadow="md" p={5} >
 
        <Text fontWeight="bolder">Addresss:</Text>
-       <Text>{item}</Text>
+       {/* <Text>{item}</Text> */}
+
+       <Text width="100%" noOfLines={{ base: 4, md: null}}>
+       {item}
+</Text>
    
        </Flex>
+
+
       
       
       )}
@@ -154,7 +165,8 @@ export async function getStaticProps() {
 
   try {
     campaign = await factory.methods.getDeployCampaign().call();
-    console.log( web3.eth)
+
+  
    //adress =   web3
   } catch (err) {
     error = JSON.stringify(err);

@@ -69,7 +69,9 @@ import {
   ModalHeader,
 } from "@chakra-ui/react";
 import toast from "react-hot-toast";
+import { useRouter } from 'next/router'
 export default function index() {
+  const router = useRouter();
   let account = "";
 
   const [loading, setloading] = useState(false);

@@ -30,7 +30,7 @@ if(typeof window !== 'undefined' && typeof window.web3 !== 'undefined'){
 else{
 
     const provider  = new Web3.providers.HttpProvider(
-        'HTTP://127.0.0.1:5777'
+        'https://rinkeby.infura.io/v3/ea4177e3110044979e8b6763c434a59a'
     );
     web3 = new Web3(provider)
 

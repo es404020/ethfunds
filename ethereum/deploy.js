@@ -7,8 +7,8 @@ const compiledCampaign = require("./build/Campaign.json");
 
 
 
-const provider = new HDWalletProvider('silly must monkey raw letter song aspect cloud love similar pioneer pudding',
-'HTTP://127.0.0.1:5777'
+const provider = new HDWalletProvider('any casino grunt image language tree harsh celery doctor convince educate front',
+'https://rinkeby.infura.io/v3/ea4177e3110044979e8b6763c434a59a'
 ); 
 
 
@@ -18,11 +18,11 @@ const web3 = new Web3(provider);
 const deploy = async () => {
     const accounts = await web3.eth.getAccounts();
     
-    console.log('Attempting to deploy from account', '0xa7C9c2b9C5a943Bba27A7CF8cBb8009e5A24CBdb');
+    console.log('Attempting to deploy from account', accounts[0]);
     
     const result = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
         .deploy({ data:  compiledFactory.bytecode })
-        .send({ gas: '1000000', from:  '0xa7C9c2b9C5a943Bba27A7CF8cBb8009e5A24CBdb' });
+        .send({ gas: '10000000', from: accounts[0] });
 
 
       
