@@ -23,8 +23,8 @@ const config = {
 const theme = extendTheme({ config,colors ,
   
   fonts: {
-  heading: "Poppins",
-  body: "Poppins",
+  heading: "Bai Jamjuree",
+  body: "Bai Jamjuree",
 }
 ,})
 
