@@ -11,9 +11,9 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import Mainlayout from "../../layouts/mainlayouts";
-export default function CampDetails() {
+export default function CampDetails({campid}) {
   const router = useRouter();
-  const { campid } = router.query;
+
   const [state, setstate] = useState("");
   const [summary, setsummary] = useState("");
   const campaign = Campaign(campid);
@@ -168,4 +168,16 @@ export default function CampDetails() {
      
     </>
   );
+}
+
+
+export async function getServerSideProps(ctx) {
+  const { campid } = ctx.query;
+ 
+  return {
+    props: {
+      campid,
+    },
+    revalidate: 10,
+  };
 }
