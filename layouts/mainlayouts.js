@@ -36,7 +36,7 @@ import {
 import { useRouter } from 'next/router';
 import web3 from "../ethereum/web3";
 
-
+import { useMoralis } from "react-moralis";
 import { useWeb3React } from "@web3-react/core"
 import { injected } from "../component/connects"
 
@@ -45,7 +45,7 @@ import { injected } from "../component/connects"
 export default function Mainlayout({ children }) {
 
   const { active, account, library, connector, activate, deactivate } = useWeb3React()
-
+  const { authenticate, isAuthenticated, user } = useMoralis();
   async function connect() {
     console.log('hehe')
     try {
@@ -121,8 +121,9 @@ export default function Mainlayout({ children }) {
             </Flex>
 
 {
-  !web3.currentProvider.selectedAddress ?  <Button
-  onClick={connect}
+!isAuthenticated?  <Button
+  // onClick={connect}
+  onClick={() => authenticate()}
              
              borderColor=" #02d395 "
   
@@ -133,8 +134,8 @@ export default function Mainlayout({ children }) {
           
             >
               connect
-            </Button>:
-            <Text color="white" isTruncated>{web3.currentProvider.selectedAddress.toString().slice(0,10)}***{web3.currentProvider.selectedAddress.toString().slice(19,28)}</Text>
+            </Button>:<Text color="white" isTruncated>{user.get("username")}</Text>
+            // <Text color="white" isTruncated>{web3.currentProvider.selectedAddress.toString().slice(0,10)}***{web3.currentProvider.selectedAddress.toString().slice(19,28)}</Text>
 }
          
 

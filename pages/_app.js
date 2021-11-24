@@ -5,7 +5,7 @@ import "../styles/globals.css";
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 
-
+import { MoralisProvider } from "react-moralis";
 
 
 function getLibrary(provider) {
@@ -17,6 +17,8 @@ function MyApp({ Component, pageProps }) {
   return (
 
     <>
+
+<MoralisProvider appId="Mvi5dm6MqPeaysUnIOzjwaw6754t8Xa4x14uNwwq" serverUrl="https://1kamis3xj4rj.usemoralis.com:2053/server">
         <Web3ReactProvider getLibrary={getLibrary}>
     <ChakraProvider theme={theme}>
          <Layout>
@@ -28,7 +30,7 @@ function MyApp({ Component, pageProps }) {
 
 
     </Web3ReactProvider>
-
+    </MoralisProvider>
     </>
   )
 
