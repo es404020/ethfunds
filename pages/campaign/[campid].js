@@ -67,7 +67,7 @@ export default function CampDetails({ campid }) {
     try {
      const accounts = await web3.eth.getAccounts();
     await campaign.methods.contribute().send({
-      from: accounts[0],
+      from: web3.currentProvider.selectedAddress,
 
       value: web3.utils.toWei(value.contribute.toString(), "ether"),
     })
