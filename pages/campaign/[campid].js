@@ -17,11 +17,20 @@ import {
   InputRightElement,
   InputRightAddon,
   useColorModeValue,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  useDisclosure,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import Mainlayout from "../../layouts/mainlayouts";
 import { Formik } from "formik";
 export default function CampDetails({ campid }) {
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [loading, setloading] = useState(false);
 
   const [state, setstate] = useState("");
@@ -209,6 +218,8 @@ export default function CampDetails({ campid }) {
                 View Request
               </Button>
               <Button
+
+onClick={onOpen}
                 colorScheme="teal"
                 variant="outline"
                 display={{ base: "block", md: "none" }}
@@ -329,6 +340,97 @@ export default function CampDetails({ campid }) {
           </Flex>
         </Grid>
       </Box>
+
+
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Oya support</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+          <Formik
+                      initialValues={{
+                        contribute: 0,
+                       
+                      }}
+                      validate={(values) => {
+                        const errors = {};
+                        if (!values.contribute) {
+                          errors.contribute = "required value";
+                        }
+                       
+                        return errors;
+                      }}
+                      onSubmit={(values, { setSubmitting, resetForm }) => {
+                        onSubmit(values, resetForm);
+                        onClose();
+
+                        setSubmitting(false);
+                      }}
+                    >
+                      {({
+                        values,
+                        errors,  
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                        isSubmitting,
+                        /* and other goodies */
+                      }) => (
+                        <form onSubmit={handleSubmit}>
+                          <InputGroup size="md" mt={3}>
+                            <Input
+                              type="text"
+                              isInvalid={
+                                errors.contribute && touched.contribute && errors.contribute
+                                  ? true
+                                  : false
+                              }
+                              errorBorderColor="crimson"
+                              type="text"
+                              name="contribute"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                             
+                              placeholder={` minimum contribution of ${summary.minimumContribution}`}
+                            />
+
+                            <InputRightAddon>ether</InputRightAddon>
+                          </InputGroup>
+
+                          <Text fontSize="sm" color="red.300">
+                              {" "}
+                              {errors.contribute && touched.contribute && errors.contribute}
+                            </Text>
+                            <Button
+                                type="submit"
+                            isLoading={loading}
+                            loadingText="Submitting"
+                            disabled={isSubmitting}mt={5} bg="teal" borderRadius={1} color="white" width="100%">
+                    support
+                  </Button>
+
+                          {/* <Button
+                            isLoading={loading}
+                            loadingText="Submitting"
+                            disabled={isSubmitting}
+                            color="white"
+                            bg="#01048A"
+                            type="submit"
+                            colorScheme="blue"
+                            mr={3}
+                          >
+                            Create
+                          </Button> */}
+                        </form>
+                      )}
+                    </Formik>
+          </ModalBody>
+
+        
+        </ModalContent>
+      </Modal>
       </LoadingOverlay>
     </>
   );
