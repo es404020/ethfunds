@@ -15,7 +15,15 @@ export default function CampDetails({campid}) {
   const router = useRouter();
 
   const [state, setstate] = useState("");
-  const [summary, setsummary] = useState("");
+  const [summary, setsummary] = useState(
+    {
+      minimumContribution: "",
+      balance:0,
+      requestCount: 0,
+      approversCount:0,
+      manger:"",
+    
+  });
   const campaign = Campaign(campid);
 
   useEffect(async () => {
@@ -30,6 +38,11 @@ export default function CampDetails({campid}) {
       approversCount: summary[3],
       manger: summary[4],
     });
+    return () => {
+      setsummary( {
+   
+    }); // This worked for me
+    };
   }, [state]);
 
   return (
@@ -72,6 +85,27 @@ export default function CampDetails({campid}) {
               >
                 You can find all the information about this project{" "}
               </Text>
+
+              <Text
+              overflowWrap="break-word"
+
+              display={{ base: "block", md: "none" }}
+            
+                fontSize={{ base: "sm", md: "2xl" }}
+                mb={{ base: 5, md: null }}
+              >
+              MangerID: {summary.manger.toString().slice(0,10)}... {summary.manger.toString().slice(10,20)}
+              </Text>
+
+              <Text
+
+display={{ base: "none", md: "block" }}
+
+  fontSize={{ base: "sm", md: "sm" }}
+  mb={{ base: 5, md: null }}
+>
+Manger: {summary.manger}
+</Text>
 
               <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                 <Flex
@@ -178,6 +212,6 @@ export async function getServerSideProps(ctx) {
     props: {
       campid,
     },
-    revalidate: 10,
+    //revalidate: 10,
   };
 }
