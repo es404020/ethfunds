@@ -123,7 +123,17 @@ export default function Mainlayout({ children }) {
 {
 !isAuthenticated?  <Button
   // onClick={connect}
-  onClick={() => authenticate()}
+  onClick={() => authenticate({ 
+    provider: "walletconnect", 
+    mobileLinks: [
+      "rainbow",
+      "metamask",
+      "argent",
+      "trust",
+      "imtoken",
+      "pillar",
+    ] 
+})}
              
              borderColor=" #02d395 "
   
