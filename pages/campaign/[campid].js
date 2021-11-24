@@ -299,7 +299,7 @@ onClick={onOpen}
                               onChange={handleChange}
                               onBlur={handleBlur}
                              
-                              placeholder={` minimum contribution of ${summary.minimumContribution}`}
+                              placeholder={` minimum contribution of  ${ web3.utils.fromWei(summary.minimumContribution.toString(), "ether")}`}
                             />
 
                             <InputRightAddon>ether</InputRightAddon>
@@ -393,7 +393,7 @@ onClick={onOpen}
                               onChange={handleChange}
                               onBlur={handleBlur}
                              
-                              placeholder={` minimum contribution of ${summary.minimumContribution}`}
+                              placeholder={` minimum contribution of ${ web3.utils.fromWei(summary.minimumContribution.toString(), "ether")}`}
                             />
 
                             <InputRightAddon>ether</InputRightAddon>
