@@ -41,11 +41,13 @@ export default function CampDetails({ campid }) {
     approversCount: 0,
     manger: "",
   });
-  var campaign = Campaign(campid);
+  const campaign = Campaign(campid);
+
 
   useEffect(async () => {
     const summary = await campaign.methods.getSummary().call();
     const desc = await campaign.methods.description().call();
+    console.log( await campaign.methods.requests(0).call())
 
     setstate(desc);
     setsummary({
@@ -214,7 +216,7 @@ export default function CampDetails({ campid }) {
               justifyContent="space-evenly"
               width={{ base: "100%", md: "90%" }}
             >
-              <Button colorScheme="teal" mb={5} variant="solid">
+              <Button colorScheme="teal" onClick={() => router.push(`/campaign/${campid}/request`)} mb={5} variant="solid">
                 View Request
               </Button>
               <Button

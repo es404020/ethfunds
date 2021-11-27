@@ -121,19 +121,19 @@ export default function Mainlayout({ children }) {
             </Flex>
 
 {
-!isAuthenticated?  <Button
-  // onClick={connect}
-  onClick={() => authenticate({ 
-    provider: "walletconnect", 
-    mobileLinks: [
-      "rainbow",
-      "metamask",
-      "argent",
-      "trust",
-      "imtoken",
-      "pillar",
-    ] 
-})}
+!web3.currentProvider.selectedAddress?  <Button
+   onClick={connect}
+//   onClick={() => authenticate({ 
+//     provider: "walletconnect", 
+//     mobileLinks: [
+//       "rainbow",
+//       "metamask",
+//       "argent",
+//       "trust",
+//       "imtoken",
+//       "pillar",
+//     ] 
+// })}
              
              borderColor=" #02d395 "
   
@@ -144,8 +144,9 @@ export default function Mainlayout({ children }) {
           
             >
               connect
-            </Button>:<Text color="white" isTruncated>{user.get("username")}</Text>
-            // <Text color="white" isTruncated>{web3.currentProvider.selectedAddress.toString().slice(0,10)}***{web3.currentProvider.selectedAddress.toString().slice(19,28)}</Text>
+            </Button>:
+            // <Text color="white" isTruncated>{user.get("username")}</Text>
+            <Text color="white" isTruncated>{web3.currentProvider.selectedAddress.toString().slice(0,10)}***{web3.currentProvider.selectedAddress.toString().slice(19,28)}</Text>
 }
          
 
